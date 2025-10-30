@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "picorpixel",
+  "post": {
+    "dir": "dist/client",
+    "entrypoints": {
+      "default": {
+        "entry": "index.html"
+      }
+    }
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "media": {
+    "dir": "assets"
+  },
+  "permissions": {
+    "redis": true,
+    "http": {
+      "domains": []
+    }
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "Create PicOrPixel Game Post",
+        "description": "Create a new daily challenge post",
+        "endpoint": "/internal/menu/post-create",
+        "location": "subreddit",
+        "forUserType": "moderator"
+      }
+    ]
+  },
+  "triggers": {
+    "onAppInstall": "/internal/on-app-install"
+  },
+  "dev": {
+    "subreddit": "picorpixel_dev"
+  }
+}

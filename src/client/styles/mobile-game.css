@@ -1,0 +1,404 @@
+/* Mobile-optimized game interface styles */
+
+/* Game container with safe areas */
+.game-container {
+  /* Full viewport with safe area support */
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  
+  /* Safe area insets for devices with notches */
+  padding-left: max(env(safe-area-inset-left), 0px);
+  padding-right: max(env(safe-area-inset-right), 0px);
+  padding-top: max(env(safe-area-inset-top), 0px);
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  
+  /* Prevent overscroll bounce on iOS */
+  overscroll-behavior: none;
+}
+
+/* Splash screen mobile optimizations */
+.splash-screen {
+  /* Center content with proper spacing */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  
+  /* Gradient background optimized for mobile */
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+  
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+}
+
+.splash-title {
+  /* Responsive title sizing */
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  
+  /* Prevent text overflow */
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.splash-subtitle {
+  /* Responsive subtitle */
+  font-size: clamp(1rem, 4vw, 1.25rem);
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 90%;
+  
+  /* Better line height for mobile */
+  line-height: 1.5;
+}
+
+/* Play button mobile optimization */
+.play-button {
+  /* Large touch target */
+  min-height: 60px;
+  min-width: 200px;
+  padding: 1rem 2rem;
+  
+  /* Responsive font size */
+  font-size: clamp(1.125rem, 4vw, 1.5rem);
+  font-weight: 700;
+  
+  /* Enhanced visual feedback */
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+  
+  /* Smooth interactions */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.play-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.play-button:disabled {
+  opacity: 0.6;
+  transform: none !important;
+  cursor: not-allowed;
+}
+
+/* Game interface mobile layout */
+.game-interface-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #111827;
+  
+  /* Prevent zoom on double tap */
+  touch-action: manipulation;
+}
+
+.game-header {
+  /* Compact header for mobile */
+  padding: 0.75rem 1rem;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  
+  /* Flex layout for mobile */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.game-progress-bar {
+  /* Full width progress bar */
+  width: 100%;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.game-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+  border-radius: 9999px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Image display area */
+.game-image-container {
+  flex: 1;
+  position: relative;
+  background-color: #000;
+  overflow: hidden;
+  
+  /* Optimize for image interactions */
+  touch-action: pan-x pan-y;
+}
+
+.game-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  
+  /* Prevent image dragging */
+  -webkit-user-drag: none;
+  
+  /* Prevent context menu */
+  -webkit-touch-callout: none;
+  
+  /* Smooth zoom transitions */
+  transition: transform 0.2s ease-out;
+}
+
+/* Loading states */
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  z-index: 10;
+}
+
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Game controls */
+.game-controls {
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.game-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.game-button {
+  /* Large touch targets */
+  min-height: 60px;
+  padding: 1rem 1.5rem;
+  
+  /* Responsive font size */
+  font-size: clamp(1rem, 3.5vw, 1.125rem);
+  font-weight: 700;
+  
+  /* Rounded corners */
+  border-radius: 0.75rem;
+  
+  /* Smooth interactions */
+  transition: all 0.2s ease-in-out;
+  
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  
+  /* Remove default button styles */
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.game-button:active {
+  transform: scale(0.95);
+}
+
+.game-button:disabled {
+  opacity: 0.6;
+  transform: none !important;
+  cursor: not-allowed;
+}
+
+.game-button-real {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3);
+}
+
+.game-button-ai {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.3);
+}
+
+/* Results display mobile optimization */
+.results-container {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 1rem;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+  
+  /* Center content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.results-card {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Smooth entrance animation */
+  animation: slideUpFade 0.6s ease-out;
+}
+
+.results-score {
+  /* Large, prominent score display */
+  font-size: clamp(3rem, 15vw, 5rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  
+  /* Gradient text effect */
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Leaderboard mobile optimization */
+.leaderboard-container {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+}
+
+.leaderboard-header {
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.leaderboard-list {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.leaderboard-item {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  
+  /* Smooth hover effect on non-touch devices */
+  transition: all 0.2s ease-in-out;
+}
+
+@media (hover: hover) {
+  .leaderboard-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Animations */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Utility classes for mobile */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.safe-area-padding {
+  padding-left: max(env(safe-area-inset-left), 1rem);
+  padding-right: max(env(safe-area-inset-right), 1rem);
+  padding-top: max(env(safe-area-inset-top), 1rem);
+  padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+}
+
+/* Responsive text utilities */
+.text-responsive-xs {
+  font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+}
+
+.text-responsive-sm {
+  font-size: clamp(0.875rem, 3vw, 1rem);
+}
+
+.text-responsive-base {
+  font-size: clamp(1rem, 3.5vw, 1.125rem);
+}
+
+.text-responsive-lg {
+  font-size: clamp(1.125rem, 4vw, 1.25rem);
+}
+
+.text-responsive-xl {
+  font-size: clamp(1.25rem, 5vw, 1.5rem);
+}
+
+.text-responsive-2xl {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+}
+
+.text-responsive-3xl {
+  font-size: clamp(2rem, 8vw, 3rem);
+}
